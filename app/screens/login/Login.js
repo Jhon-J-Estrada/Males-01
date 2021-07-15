@@ -2,19 +2,13 @@ import React, { useRef } 							 from "react";
 import { StyleSheet, View, Text, ScrollView, Image } from "react-native";
 
 
-//import { Divider } 									 from "react-native-elements";
-//import { useNavigation } 							 from "@react-navigation/native";
-//import Toast 										 from "react-native-easy-toast";
-//import CuentaUser        							 from "../../components/login/CuentaUser";
+import { Divider } 									 from "react-native-elements";
+import { useNavigation } 							 from "@react-navigation/native";
+import Toast 										 from "react-native-easy-toast";
+import CuentaUser        							 from "../../components/login/CuentaUser";
 
 export default function Login(){
-return(
-	<View>
-		<Text>login</Text>
-	</View>
-	);
 
-	/*
 
 	const toastRef = useRef();
 
@@ -23,7 +17,7 @@ return(
 	return(
 		<ScrollView>
 			<Image
-				source = { require("../../../assets/img/user-guest.jpg")}
+				source = { require("../../../assets/img/tenedores-letras-icono-logo.png")}
 				resizeMode  = "contain"
 				style 		= {styles.logo}
 			 />
@@ -44,7 +38,7 @@ return(
 		</ScrollView>
 		);
 	
-	*/
+	
 }
 
 

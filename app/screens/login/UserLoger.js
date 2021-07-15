@@ -5,8 +5,8 @@ import Toast 						from "react-native-easy-toast";
 import * as firebase 				from "firebase";
 
 import Cargando from "../../components/Cargando";
-import InfoUser	from "../../components/login/InfoUser";
-import CuentaOpciones	from "../../components/login/CuentaOpciones";
+//import InfoUser	from "../../components/login/InfoUser";
+//import CuentaOpciones	from "../../components/login/CuentaOpciones";
 
 export default function UserLoger() {
 
@@ -32,21 +32,8 @@ export default function UserLoger() {
 	return(
 		<View style = { styles. viewUserInfo }>
 			
-			
-				<InfoUser 
-					userInfo 		= { userInfo }  
-					toastRef		= {toastRef}
-					setCargando     = {setCargando}
-					setCargandoTex  = {setCargandoTex}
-
-
-					/>
-
-			<CuentaOpciones
-				userInfo 		= { userInfo } 
-				toastRef		= {toastRef} 
-				setReloadUserInfo = { setReloadUserInfo }
-			/>
+		
+		
 			<Button 
 				title       = "Cerrar sesión-"
 				buttonStyle = { styles.btnCloseSecion }
@@ -87,3 +74,4 @@ const styles = StyleSheet.create({
 		color: "#00a680",
 	}
 });
+

@@ -10,7 +10,7 @@ export default function UserInvit() {
 		<ScrollView centerContent = { false } style = { styles.viewBody }>		
 			<Image
 			style = { styles.image }
-			source = { require("../../../assets/img/user-guest.jpg")}
+			source = { require("../../../assets/img/user-guest.png")}
 			resizeMode="contain"
 			/>
 			<View style = { styles.viewBtn }>

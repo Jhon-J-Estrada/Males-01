@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { View , Text } from "react-native";
-//import * as firebase from "firebase";
-//import UserLoger from "./UserLoger";
-//import UserInvit from "./UserInvit";
+import * as firebase from "firebase";
+import UserLoger from "./UserLoger";
+import UserInvit from "./UserInvit";
 
 //cargando cd
 
-//import Cargando from "../../components/Cargando"
+import Cargando from "../../components/Cargando"
 
 
 export default function You() {
-	return(
-		<View>
-			<Text>You</Text>
-		</View>
-		);
-
-	/*
+	
 
 	const [login, setLogin] = useState(null);
 
@@ -31,5 +25,5 @@ export default function You() {
 
 	return login ? <UserLoger/> : <UserInvit/>;
 	
-	*/
+	
 }
