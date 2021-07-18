@@ -1,8 +1,8 @@
 import React, { useState }from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Input, Button, Icon } from "react-native-elements";
-import validar from "../../utils/validar"
-import reauthenticate from "../../utils/api"
+import { Input, Icon, Button} 	from "react-native-elements";
+import { validateEmail } 		from "../../utils/validar";
+import reauthenticate from "../../utils/api";
 import * as firebase from "firebase";
 
 
@@ -20,16 +20,10 @@ export default function ChangeDisplayEmailFrom(props){
 
 	const onChange = (e, type) => {
 		setFormData({ ...formData, [type]: e.nativeEvent.text});
-	}
+	};
 
-	
-	
-	
-
-
-
-	const onSubmit = () =>{
-		setError(null);
+	const onSubmit = () =>{		
+		setError({});
 		if(!formData.email || email === formData.email){
 			setError({
 				email: "El email no ha cambiado",
@@ -42,39 +36,31 @@ export default function ChangeDisplayEmailFrom(props){
 			setError({
 				password: "La contraseña no puede estas vacia",
 			});
-		}else{
+		}else{						
 			setCargando(true);
 
-			reauthenticate(formData.password).then(response =>{
-				console.log("valida");
+			reauthenticate(formData.password).then(response =>{			
 
 				firebase
 				.auth()
 				.currentUser.updateEmail(formData.email)
 				.then(() =>{
 					setReloadUserInfo(true);
-					setCargando(false);
-					
+					setCargando(false);					
 					toastRef.current.show("Email actualizado correctamente ");
-
 					setShowModal(false);
-
 				})
 				.catch(() => {
 					setError("Error al actualizar el Email..");
 					setCargando(false);
 				});
-
-
-
 					
-
 			}).catch(() =>{
-				setError({
-				password: "La contraseña no es correcta",
+					setCargando(false);
+					setError({
+								password: "La contraseña no es correcta",
+							});
 			});
-			});
-			
 			
 
 			
@@ -82,12 +68,14 @@ export default function ChangeDisplayEmailFrom(props){
 
 		
 	};
+
+
 	return(
 		<View style = {styles.view}>
 			<Input
 				placeholder = "Correo electronico"
 				containerStyle = { styles.input }
-				defaultValue = { email || "" }
+				defaultValue = { email || "" }				
 				rightIcon = {{
 					type: "material-comunity",
 					name: "alternate-email",
@@ -106,7 +94,8 @@ export default function ChangeDisplayEmailFrom(props){
 				secureTextEntry = { showPassword ? false: true }
 					rightIcon = {{
 						type: "material-comunity",
-						name: showPassword ? "alternate-email" : "alternate-email",
+						//name: showPassword ? "lock" : "lock-open",
+						name: showPassword ? "lock" : "lock-open",
 						color: "#c2c2c2",
 						onPress: () => setShowPassword(!showPassword)
 				}}

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 import { map } from "lodash";
 
 import Modal from "../../components/Modal";
 import ChangeDisplayNameFrom from "./ChangeDisplayNameFrom";
 import ChangeDisplayEmailFrom from "./ChangeDisplayEmailFrom";
+import ChangeDisplayPasswordFrom from "./ChangeDisplayPasswordFrom";
 
 export default function CuentaOpciones(props){
 //estados 
@@ -14,9 +15,10 @@ export default function CuentaOpciones(props){
 
 	const { userInfo, toastRef, setReloadUserInfo } = props;
 	
-	console.log(userInfo);
+	
 
 	const selecComponent =(key) =>{
+		
 
 		switch(key){
 			case "name":
@@ -29,23 +31,34 @@ export default function CuentaOpciones(props){
 						/>
 					);
 				setShowModal(true);
-				console.log(key);
+				
 				break;
 			case "email":
 				setrenderComponent(
+					<ChangeDisplayEmailFrom
+							email = {userInfo.email}
+							setShowModal = { setShowModal }
+							toastRef = { toastRef }
+							setReloadUserInfo = { setReloadUserInfo }
+						/>
 					
 					);
 				setShowModal(true);
-				console.log(key);
+				
 				break;
 			case "contra":
-				setrenderComponent(<Text>Cambiar Contraseña...</Text>);
+				setrenderComponent( <ChangeDisplayPasswordFrom
+						setShowModal = { setShowModal }
+							toastRef = { toastRef }
+					/>
+				);
 				setShowModal(true);
-				console.log(key);
+				
 				break;
 			default:
 				setrenderComponent(null);
 				setShowModal(false);
+				break;
 
 
 		}	
@@ -101,7 +114,7 @@ function generateOptions(selecComponent){
 			iconNameLeft:"alternate-email",
 			iconColorLeft:"#ccc",
 			iconNameRight:"chevron-right",
-			iconColorRight:"#AACC00",
+			iconColorRight:"#AACC00",			
 			onPress:() => selecComponent("email")
 		},
 		{

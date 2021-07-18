@@ -14,8 +14,9 @@ export default function ChangeDisplayNameFrom(props){
 	const [ cargando, setCargando ] = useState(false);
 
 
-
 	const onSubmit = () =>{
+
+		
 		setError(null);
 		if(!newDisplayName){
 			setError("El nombre no puede estar vacio.");
@@ -41,7 +42,7 @@ export default function ChangeDisplayNameFrom(props){
 				});
 		}
 
-		console.log(newDisplayName);
+		
 	};
 	return(
 		<View style = {styles.view}>

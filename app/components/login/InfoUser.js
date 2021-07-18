@@ -17,7 +17,7 @@ export default function InfoUser(props){
 					,setCargando
 					,setCargandoTex }	= props;
 
-	console.log(props.userInfo);
+	
 
 
 	// FUNCTION......
