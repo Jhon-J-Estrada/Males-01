@@ -43,6 +43,8 @@ export default function Navegation(){
 					title: "Inicio"
 				}}
 				/>
+
+			
 				
 				<Tab.Screen
 				name="grupos"

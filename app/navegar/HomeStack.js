@@ -9,7 +9,7 @@ export default function HomeStack(){
 	return(
 		<Stack.Navigator>
 			<Stack.Screen
-			name      = " home "
+			name      = "home"
 			component = { Home }
 			options   = {{
 				title : "Inicio"

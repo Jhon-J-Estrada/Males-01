@@ -21,6 +21,9 @@
     },
     "android": {
       "permissions":["CAMERA_ROLL",
+                      "LOCATION",
+                      "ACCESS_COARSE_LOCATION",
+                      "ACCESS_FINE_LOCATION",
                       "READ_EXTERNAL_STORAGE",
                       "WRITE_EXTERNAL_STORAGE"],
       "adaptiveIcon": {

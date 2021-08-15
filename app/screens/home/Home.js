@@ -5,6 +5,11 @@ import { KeyboardAwareScrollView } 								from 'react-native-keyboard-aware-scr
 import Toast 													from "react-native-easy-toast";
 import { firebaseApp }											from "../../utils/firebase";
 import firebase 												from "firebase/app";
+import "firebase/firestore";
+
+const db = firebase.firestore(firebaseApp);
+
+import ListItem from "../../components/items/ListItem";
 
 //import RegistroForm from "../../components/login/RegistroForm"
 
@@ -15,18 +20,75 @@ export default function Home(props){
 	const toastRef = useRef();
 	 // Estados 
 	const [ user, setUser ] = useState(null);
+	// los items 
+	const [ items, setItems ] = useState([]);
+	// numero de items 
+	const [ totalItems, setTotalItems ] = useState(0);
+
+	// star items 
+	const [ startItems, setStartItems ] = useState(null);
+
+	//limite de items
+	const limiteItems = 10;
+
+
 
 	 // Effecs
 	useEffect(()=>{
 		firebase.auth().onAuthStateChanged((userInfo) => {
 			setUser(userInfo);
 		})
-	}, [])
+	}, []);
+
+
+
+		useEffect(()=>{
+			db.collection("items").get().then((snap) =>{
+				setTotalItems(snap.size);
+			});
+
+			const resulItems = [];
+
+			db.collection("items")
+			.orderBy("createAt","desc")
+			.limit(limiteItems)
+			.get()
+			.then((response) =>{
+				setStartItems(response.docs[response.docs.length - 1 ]);
+
+
+
+				response.forEach((doc) =>{					
+					const items = doc.data();
+					items.id = doc.id;
+
+					resulItems.push(items);
+				});
+
+				setItems(resulItems);	
+			
+			});
+
+			
+
+			
+	}, []);
+
+
+
+
 
 
 	return(
 		<View style = { styles.viewBody }>
-			<Text>Inicio</Text>
+			
+			<ListItem
+				listItem = {items}
+			/>
+
+
+
+
 			{ user && (
 					<Icon 
 						type="material-community" 
